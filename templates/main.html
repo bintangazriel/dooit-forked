@@ -1,0 +1,390 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+<title>Dooit - Your Business Financial Partner</title>
+
+<!-- Preload images -->
+<link rel="preload" as="image" href="{% static 'images/hero-banner.png' %}">
+{% endblock meta %}
+
+{% block content %}
+<main>
+  <article>
+
+    <!-- #HERO -->
+
+    <section class="section hero" id="home" aria-label="hero">
+      <div class="container">
+        <div class="hero-content">
+          <p class="hero-subtitle has-before">Bukan Projek RPL Biasa</p>
+
+          <h1 class="h1 hero-title">Mitra Finansial untuk Bisnis Anda</h1>
+
+          <p class="hero-text">
+            Bantu keuangan bisnis anda dalam mengelola pemasukan serta pengeluaran sebagai wujud untuk membantu anda
+            mencapai impian dengan meningkatkan skala bisnis anda menjadi global
+          </p>
+
+          <div class="btn-group">
+            <a href="#services" class="btn btn-primary">Pelajari Lebih Lanjut ></a>
+
+            <button class="flex-btn">
+              <div class="btn-icon">
+                <ion-icon name="play" aria-hidden="true"></ion-icon>
+              </div>
+              <span class="span">Lihat Demo</span>
+            </button>
+          </div>
+        </div>
+
+        <figure class="hero-banner has-before img-holder" style="--width: 650; --height: 650;">
+          <img src="{% static 'images/hero-banner.png' %}" width="650" height="650" alt="Hero Banner" class="img-cover">
+        </figure>
+      </div>
+    </section>
+
+
+    <!-- #SERVICE -->
+
+    <section class="section service" id="services" aria-label="service">
+      <div class="container">
+        <p class="section-subtitle text-center">-Apa yang Kami Tawarkan-</p>
+
+        <h2 class="h2 section-title text-center">Fitur Utama Dooit</h2>
+
+        <p class="section-text text-center">
+          Maksimalkan biaya operasi bisnis Anda untuk keseluruhan operasi dan
+          rasakan langsung perubahan yang signifikan.
+        </p>
+
+        <ul class="grid-list">
+          <li>
+            <div class="service-card has-after">
+              <figure class="card-icon">
+                <img src="" width="140" height="140" loading="lazy" alt="Catat Transaksimu"
+                  class="img">
+              </figure>
+
+              <div class="card-content">
+                <h3 class="h3 card-title">Catat Transaksimu</h3>
+                <p class="card-text">
+                  Lorem ipsum dolor sit amet, consectetur adi piscing semper turpis. Nullam eget luctlie gula and
+                  adipiscing elit.
+                </p>
+                <a href="#" class="btn-link">
+                  <span class="span">Read More</span>
+                  <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+                </a>
+              </div>
+            </div>
+          </li>
+
+          <li>
+            <div class="service-card has-after">
+              <figure class="card-icon">
+                <img src="" width="140" height="140" loading="lazy" alt="Review Keuanganmu"
+                  class="img">
+              </figure>
+
+              <div class="card-content">
+                <h3 class="h3 card-title">Review Keuanganmu</h3>
+                <p class="card-text">
+                  Lorem ipsum dolor sit amet, consectetur adi piscing semper turpis. Nullam eget luctlie gula and
+                  adipiscing elit.
+                </p>
+                <a href="#" class="btn-link">
+                  <span class="span">Read More</span>
+                  <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+                </a>
+              </div>
+            </div>
+          </li>
+
+          <li>
+            <div class="service-card has-after">
+              <figure class="card-icon">
+                <img src="" width="140" height="140" loading="lazy"
+                  alt="Budgeting Sesuai Kebutuhan" class="img">
+              </figure>
+
+              <div class="card-content">
+                <h3 class="h3 card-title">Budgeting Sesuai Kebutuhan</h3>
+                <p class="card-text">
+                  Lorem ipsum dolor sit amet, consectetur adi piscing semper turpis. Nullam eget luctlie gula and
+                  adipiscing elit.
+                </p>
+                <a href="#" class="btn-link">
+                  <span class="span">Read More</span>
+                  <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+                </a>
+              </div>
+            </div>
+          </li>
+
+          <li>
+            <div class="service-card has-after">
+              <figure class="card-icon">
+                <img src="" width="140" height="140" loading="lazy"
+                  alt="Konsultasikan Dengan Ahlinya" class="img">
+              </figure>
+
+              <div class="card-content">
+                <h3 class="h3 card-title">Konsultasikan Dengan Ahlinya</h3>
+                <p class="card-text">
+                  Lorem ipsum dolor sit amet, consectetur adi piscing semper turpis. Nullam eget luctlie gula and
+                  adipiscing elit.
+                </p>
+                <a href="#" class="btn-link">
+                  <span class="span">Read More</span>
+                  <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+                </a>
+              </div>
+            </div>
+          </li>
+        </ul>
+
+        <a href="#" class="btn btn-primary">Mulai Sekarang ></a>
+
+      </div>
+    </section>
+
+
+    <!-- #FEATURES -->
+
+    <section class="section features" id="features" aria-label="features">
+      <div class="container">
+        <p class="section-subtitle text-center">-Keunggulan Kami-</p>
+
+        <h2 class="h2 section-title text-center">Alasan Kenapa Harus Memilih Dooit</h2>
+
+        <p class="section-text text-center">
+          Kenali lebih dalam mengenai keunggulan Dooit sebagai website penunjang finansial bisnis anda
+        </p>
+
+        <ul class="grid-list">
+          <li>
+            <div class="features-card">
+              <data class="card-number" value="01">01</data>
+
+              <h3 class="h3 card-title">Registrasi Yang Simpel</h3>
+
+              <p class="card-text">
+                Nullam ullamcorper condimentum urna eu accumsan vormir na asgard.
+              </p>
+            </div>
+          </li>
+
+          <li>
+            <div class="features-card">
+              <data class="card-number" value="02">02</data>
+
+              <h3 class="h3 card-title">Gratis Dukungan 1 Tahun</h3>
+
+              <p class="card-text">
+                Nullam ullamcorper condimentum urna eu accumsan vormir na asgard.
+              </p>
+            </div>
+          </li>
+
+          <li>
+            <div class="features-card">
+              <data class="card-number" value="03">03</data>
+
+              <h3 class="h3 card-title">Amati Perubahan Real-Time</h3>
+
+              <p class="card-text">
+                Nullam ullamcorper condimentum urna eu accumsan vormir na asgard.
+              </p>
+            </div>
+          </li>
+
+          <li>
+            <div class="features-card">
+              <data class="card-number" value="04">04</data>
+
+              <h3 class="h3 card-title">Kustomisasi Dengan Mudah</h3>
+
+              <p class="card-text">
+                Nullam ullamcorper condimentum urna eu accumsan vormir na asgard.
+              </p>
+            </div>
+          </li>
+
+          <li>
+            <div class="features-card">
+              <data class="card-number" value="05">05</data>
+
+              <h3 class="h3 card-title">Fitur Yang Lengkap</h3>
+
+              <p class="card-text">
+                Nullam ullamcorper condimentum urna eu accumsan vormir na asgard.
+              </p>
+            </div>
+          </li>
+
+          <li>
+            <div class="features-card">
+              <data class="card-number" value="06">06</data>
+
+              <h3 class="h3 card-title">Dipercaya Pakar Keuangan</h3>
+
+              <p class="card-text">
+                Nullam ullamcorper condimentum urna eu accumsan vormir na asgard.
+              </p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+
+    <!-- #FAQ -->
+
+    <section class="section faq" id="faq" aria-label="frequently asked questions">
+      <div class="container">
+
+        <div class="title-wrapper">
+          <h2 class="h2 section-title">Lihat Pertanyaan yang Paling Sering Diajukan (FAQ)</h2>
+        </div>
+
+        <ul class="grid-list">
+          <li>
+            <div class="faq-card">
+              <button class="card-action" data-accordion-action>
+                <h3 class="h3 card-title">
+                  01. Sebenarnya, Dooit itu website apa sih?
+                </h3>
+
+                <div class="action-icon">
+                  <ion-icon name="add-outline" aria-hidden="true" class="open"></ion-icon>
+                  <ion-icon name="remove-outline" aria-hidden="true" class="close"></ion-icon>
+                </div>
+              </button>
+
+              <div class="card-content">
+                <p>
+                  Morbi aliquam quis quam in luctus. Nullam tincidunt pulvinar imperdiet. Sed varius, diam vitae
+                  posuere semper, libero ex
+                  hendrerit nunc, ac sagittis eros metus ut diam. Donec a nibh in libero maximus vehicula. Etiam sit
+                  amet condimentum
+                  erat. Pellentesque ultrices sagittis turpis, quis tempus ante viverra et.Morbi aliquam quis quam in
+                  luctus. Nullam
+                  tincidunt pulvinar imperdiet.
+                </p>
+              </div>
+            </div>
+          </li>
+
+          <li>
+            <div class="faq-card">
+              <button class="card-action" data-accordion-action>
+                <h3 class="h3 card-title">
+                  02. Kenapa nama website nya harus Dooit?
+                </h3>
+
+                <div class="action-icon">
+                  <ion-icon name="add-outline" aria-hidden="true" class="open"></ion-icon>
+                  <ion-icon name="remove-outline" aria-hidden="true" class="close"></ion-icon>
+                </div>
+              </button>
+
+              <div class="card-content">
+                <p>
+                  Morbi aliquam quis quam in luctus. Nullam tincidunt pulvinar imperdiet. Sed varius, diam vitae
+                  posuere semper, libero ex
+                  hendrerit nunc, ac sagittis eros metus ut diam. Donec a nibh in libero maximus vehicula. Etiam sit
+                  amet condimentum
+                  erat. Pellentesque ultrices sagittis turpis, quis tempus ante viverra et.Morbi aliquam quis quam in
+                  luctus. Nullam
+                  tincidunt pulvinar imperdiet.
+                </p>
+              </div>
+            </div>
+          </li>
+
+          <li>
+            <div class="faq-card">
+              <button class="card-action" data-accordion-action>
+                <h3 class="h3 card-title">
+                  03. Untuk siapa saja sih Dooit direkomendasikan?
+                </h3>
+
+                <div class="action-icon">
+                  <ion-icon name="add-outline" aria-hidden="true" class="open"></ion-icon>
+                  <ion-icon name="remove-outline" aria-hidden="true" class="close"></ion-icon>
+                </div>
+              </button>
+
+              <div class="card-content">
+                <p>
+                  Morbi aliquam quis quam in luctus. Nullam tincidunt pulvinar imperdiet. Sed varius, diam vitae
+                  posuere semper, libero ex
+                  hendrerit nunc, ac sagittis eros metus ut diam. Donec a nibh in libero maximus vehicula. Etiam sit
+                  amet condimentum
+                  erat. Pellentesque ultrices sagittis turpis, quis tempus ante viverra et.Morbi aliquam quis quam in
+                  luctus. Nullam
+                  tincidunt pulvinar imperdiet.
+              </div>
+            </div>
+          </li>
+
+          <li>
+            <div class="faq-card">
+              <button class="card-action" data-accordion-action>
+                <h3 class="h3 card-title">
+                  04. Apa yang membedakan Dooit dengan aplikasi finansial lain di luar sana?
+                </h3>
+
+                <div class="action-icon">
+                  <ion-icon name="add-outline" aria-hidden="true" class="open"></ion-icon>
+                  <ion-icon name="remove-outline" aria-hidden="true" class="close"></ion-icon>
+                </div>
+              </button>
+
+              <div class="card-content">
+                <p>
+                  Morbi aliquam quis quam in luctus. Nullam tincidunt pulvinar imperdiet. Sed varius, diam vitae
+                  posuere semper, libero ex
+                  hendrerit nunc, ac sagittis eros metus ut diam. Donec a nibh in libero maximus vehicula. Etiam sit
+                  amet condimentum
+                  erat. Pellentesque ultrices sagittis turpis, quis tempus ante viverra et.Morbi aliquam quis quam in
+                  luctus. Nullam
+                  tincidunt pulvinar imperdiet.
+                </p>
+              </div>
+            </div>
+          </li>
+
+          <li>
+            <div class="faq-card">
+              <button class="card-action" data-accordion-action>
+                <h3 class="h3 card-title">
+                  05. Siapa saja mitra yang sudah terintegrasi dengan Dooit?
+                </h3>
+
+                <div class="action-icon">
+                  <ion-icon name="add-outline" aria-hidden="true" class="open"></ion-icon>
+                  <ion-icon name="remove-outline" aria-hidden="true" class="close"></ion-icon>
+                </div>
+              </button>
+
+              <div class="card-content">
+                <p>
+                  Morbi aliquam quis quam in luctus. Nullam tincidunt pulvinar imperdiet. Sed varius, diam vitae
+                  posuere semper, libero ex
+                  hendrerit nunc, ac sagittis eros metus ut diam. Donec a nibh in libero maximus vehicula. Etiam sit
+                  amet condimentum
+                  erat. Pellentesque ultrices sagittis turpis, quis tempus ante viverra et.Morbi aliquam quis quam in
+                  luctus. Nullam
+                  tincidunt pulvinar imperdiet.
+                </p>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </article>
+</main>
+{% endblock content %}
