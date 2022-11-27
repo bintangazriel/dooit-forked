@@ -26,17 +26,17 @@ SECRET_KEY = 'django-insecure-9mca@gc30#6e(8$$8ak@&)tos_qmb9he6i=zneq7=+q#8!ek!5
 # Automatically determine environment by detecting if DATABASE_URL variable.
 # DATABASE_URL is provided by Heroku if a database add-on is added
 # (e.g. Heroku Postgres).
-PRODUCTION = os.getenv('DATABASE_URL') is not None
+# PRODUCTION = os.getenv('DATABASE_URL') is not None
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-APP_NAME = os.getenv('APP_NAME', '')
+# APP_NAME = os.getenv('APP_NAME', '')
 
-ALLOWED_HOSTS = [f'{APP_NAME}.up.railway.app']
+ALLOWED_HOSTS = ['*']
 
-if not PRODUCTION:
-    ALLOWED_HOSTS += ['.localhost', '127.0.0.1', '[::1]']
+# if not PRODUCTION:
+#     ALLOWED_HOSTS += ['.localhost', '127.0.0.1', '[::1]']
 
 # Application definition
 
