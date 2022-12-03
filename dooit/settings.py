@@ -49,8 +49,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Our Apps
-    'anggaran'
+    'anggaran',
     'users',
+    'catatanTransaksi'
 ]
 
 MIDDLEWARE = [
