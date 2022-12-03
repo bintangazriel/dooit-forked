@@ -5,7 +5,7 @@ from .models import Anggaran
 class AnggaranForm(forms.ModelForm):
     class Meta:
         model = Anggaran
-        fields = "__all__"
+        fields = ['nominal', 'deskripsi', 'kategori', 'tanggal_mulai', 'tanggal_selesai']
 
         widgets = {
                     'tanggal_mulai': forms.DateInput(
