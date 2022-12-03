@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catatan Transaksi</title>
+    <title>Detail Catatan Transaksi</title>
 </head>
 <body>
     <table>
-        {% if catatanTransaksis %}
+        {% if catatanTransaksi %}
         <tr>
             <th>Deskripsi</th>
             <th>Nominal</th>
@@ -16,7 +16,6 @@
             <th>Jenis</th>
             <th>Kategori</th>
         </tr>
-            {% for catatanTransaksi in catatanTransaksis %}
             <tr>
                 <td>{{ catatanTransaksi.deskripsi }}</td>
                 <td>{{ catatanTransaksi.nominal }}</td>
@@ -24,7 +23,6 @@
                 <td>{{ catatanTransaksi.jenis }}</td>
                 <td>{{ catatanTransaksi.kategori }}</td>
             </tr>
-            {% endfor %}
         {% endif %}
      </table>
 </body>

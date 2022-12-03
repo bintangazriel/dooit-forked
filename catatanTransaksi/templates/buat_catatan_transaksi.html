@@ -7,11 +7,32 @@
     <title>Buat Catatan Transaksi</title>
 </head>
 <body>
-    <form method="post">
-
-    {% csrf_token %}
-    {{ form }}
-    <input type="submit" name="submit" value="Submit">
+    <form method="post" id="catatanTransaksiForm" data-kategoris-url="{% url 'ajax_load_kategoris' %}" novalidate>
+        {% csrf_token %}
+        <table>
+          {{ form.as_table }}
+        </table>
+        <button type="submit">Save</button>
+      </form>
+    
+      <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+      <script>
+        $("#id_jenis").change(function () {
+          var url = $("#catatanTransaksiForm").attr("data-kategoris-url");
+          var jenisId = $(this).val();
+    
+          $.ajax({
+            url: url,
+            data: {
+              'jenis': jenisId
+            },
+            success: function (data) {
+              $("#id_kategori").html(data);
+            }
+          });
+    
+        });
+      </script>
 </form>
 </body>
 </html>
