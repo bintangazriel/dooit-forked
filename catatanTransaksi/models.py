@@ -1,9 +1,5 @@
 from django.db import models
 
-from users.models import CustomUser
-
-# Create your models here.
-
 
 class JenisTransaksi(models.Model):
     PEMASUKAN = 1
@@ -20,10 +16,9 @@ class JenisTransaksi(models.Model):
 
 
 class CatatanTransaksi(models.Model):
+    pencatat = models.ForeignKey('users.CustomUser', on_delete=models.CASCADE)
     deskripsi = models.CharField(verbose_name="Deskripsi Transaksi", null=True, blank=True, max_length = 30)
-    nominal = models.FloatField(verbose_name="Jumlah Transaksi", null=True, blank=True)
+    nominal = models.FloatField(verbose_name="Jumlah Transaksi")
     tanggal = models.DateField(verbose_name="Tanggal Transaksi")
-    # kategori = models.ForeignKey(Kategori, on_delete=models.RESTRICT)
-    # kategori = models.CharField(verbose_name="Kategori Transaksi", null=True, blank=True, max_length = 30)
-    pencatat = models.ForeignKey(CustomUser, on_delete=models.CASCADE, blank=True, null=True)
+    kategori = models.ForeignKey('kategori.Kategori', on_delete=models.RESTRICT)
     jenis = models.ForeignKey(JenisTransaksi, on_delete=models.RESTRICT)
