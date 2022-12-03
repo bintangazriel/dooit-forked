@@ -10,4 +10,8 @@ class Kategori(models.Model):
 
     def __str__(self):
         return self.nama
+
+    def get_nama(self):
+        return self.nama
+    
     

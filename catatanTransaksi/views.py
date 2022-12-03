@@ -44,36 +44,37 @@ def load_kategoris(request):
     kategoris = Kategori.objects.filter(jenis_kategori_id=jenis_kategori_id)
     return render(request, 'kategori_dropdown_options.html', {'kategoris': kategoris})
 
+def get_category(transaksi):
+    s = set()
+    for x in transaksi:
+        s.add(x.kategori)
+    return s
+
+
+def get_total(transaksi,kategori):
+    total = 0
+    transaksi_kategori = transaksi.objects.filter(kategori=kategori)
+    
+    for item in transaksi_kategori:
+        total += item.nominal
+    return total
+
+
 def get_vis_laporan_keuangan(request):
     todays_date = datetime.date.today()
     six_months_ago = todays_date-datetime.timedelta(days=30)
-    transaksi = CatatanTransaksi.objects.filter(date__gte=six_months_ago, date__lte=todays_date)
+    transaksi_pemasukan = CatatanTransaksi.objects.filter(jenis=1,date__gte=six_months_ago, date__lte=todays_date)
+    transaksi_pengeluaran = CatatanTransaksi.objects.filter(jenis=2,date__gte=six_months_ago, date__lte=todays_date)
     finalrep_pengeluaran = {}
     finalrep_pemasukan = {}
 
-    def get_category(transaksi):
-        return transaksi.kategori
-    category_list = list(set(map(get_category, transaksi)))
-
-    def get_nominal_pengeluaran(jenis):
-        total_pengeluaran = 0
-        filtered_by_jenis = transaksi.filter(jenis="Pengeluaran")
-
-        for item in filtered_by_jenis:
-            total_pengeluaran += item.nominal
-        return total_pengeluaran
+    lst_kategori_pemasukan = get_category(transaksi_pemasukan)
+    lst_kategori_pengeluaran = get_category(transaksi_pengeluaran)
     
-    def get_nominal_pemasukan(jenis):
-        total_pemasukan = 0
-        filtered_by_jenis = transaksi.filter(jenis="Pemasukan")
+    for y in lst_kategori_pemasukan:
+        finalrep_pemasukan[y.get_nama()] = get_total(transaksi_pemasukan,y)
 
-        for item in filtered_by_jenis:
-            total_pemasukan += item.nominal
-        return total_pemasukan
-
-    for x in transaksi:
-        for y in category_list:
-            finalrep_pemasukan[y] = get_nominal_pemasukan(y)
-            finalrep_pengeluaran[y] = get_nominal_pengeluaran(y)
+    for x in lst_kategori_pengeluaran:
+        finalrep_pengeluaran[x.get_nama()] = get_total(transaksi_pengeluaran,x)      
 
     return JsonResponse({'expense_category_data': finalrep_pengeluaran,'income_category_data': finalrep_pemasukan}, safe=False)
