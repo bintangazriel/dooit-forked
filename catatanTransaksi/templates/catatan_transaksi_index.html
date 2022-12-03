@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table>
+        {% if catatanTransaksis %}
+        <tr>
+            <th>Deskripsi</th>
+            <th>Nominal</th>
+            <th>Tanggal</th>
+            <th>Kategori</th>
+            <th>Laporan Keuangan</th>
+            <th>Jenis</th>
+        </tr>
+            {% for catatanTransaksi in catatanTransaksis %}
+            <tr>
+                <td>{{ catatanTransaksi.deskripsi }}</td>
+                <td>{{ catatanTransaksi.nominal }}</td>
+                <td>{{ catatanTransaksi.tanggal }}</td>
+                <td>{{ catatanTransaksi.kategori }}</td>
+                <td>{{ catatanTransaksi.laporan_keuangan }}</td>
+                <td>{{ catatanTransaksi.jenis }}</td>
+            </tr>
+            {% endfor %}
+        {% endif %}
+     </table>
+</body>
+</html>

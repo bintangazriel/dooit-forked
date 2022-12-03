@@ -23,5 +23,6 @@ urlpatterns = [
     path('', include('main.urls')),
     path('', include('users.urls')),
     path('anggaran/', include('anggaran.urls')),
+    path('catatan-transaksi/', include('catatanTransaksi.urls')),
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
