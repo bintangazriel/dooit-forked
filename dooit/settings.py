@@ -52,7 +52,9 @@ INSTALLED_APPS = [
     'anggaran',
     'users',
     'catatanTransaksi',
-    'kategori'
+    'kategori',
+    'konsultan',
+    'konsultasi',
 ]
 
 MIDDLEWARE = [
