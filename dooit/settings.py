@@ -50,11 +50,12 @@ INSTALLED_APPS = [
 
     # Our Apps
     'anggaran',
-    'users',
     'catatanTransaksi',
     'kategori',
     'konsultan',
     'konsultasi',
+    'main',
+    'users',
 ]
 
 MIDDLEWARE = [

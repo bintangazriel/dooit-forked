@@ -19,7 +19,6 @@
   --mint-cream: hsl(160, 100%, 98%);
   --cultured: hsl(0, 0%, 93%);
   --go-green: hsl(145, 63%, 42%);
-  --light-green: hsl(148, 37%, 59%);
   --white: hsl(0, 0%, 100%);
   --darker-white: hsl(0, 0%, 95%);
   --jet: hsl(0, 0%, 18%);
@@ -820,9 +819,9 @@ body {
   }
 
   .header .btn-inline:is(:hover, :focus) {
-    background-color: var(--light-green);
+    background-color: var(--rich-black-fogra-29-1);
     color: var(--white);
-    border: 1px solid var(--light-green);
+    border: 1px solid var(--rich-black-fogra-29-1);
   }
 
   /**
