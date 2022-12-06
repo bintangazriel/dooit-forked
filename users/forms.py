@@ -3,11 +3,16 @@ from .models import CustomUser, CustomUserProfile
 from .validators import allow_only_images_validator
 
 class UserForm(forms.ModelForm):
-  password = forms.CharField(widget=forms.PasswordInput())
-  confirm_password = forms.CharField(widget=forms.PasswordInput())
+  password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'password', 'placeholder': 'Masukkan password anda'}))
+  confirm_password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'password', 'placeholder': 'Masukkan ulang password anda'}))
   class Meta:
     model = CustomUser
-    fields = ['company_name', 'username', 'email', 'password']
+    fields = ['username', 'company_name', 'email', 'password']
+    widgets = {
+      'username': forms.TextInput(attrs={'placeholder': 'Masukkan username anda'}),
+      'company_name': forms.TextInput(attrs={'placeholder': 'Masukkan nama perusahaan anda'}),
+      'email': forms.EmailInput(attrs={'placeholder': 'Masukkan email anda'})
+    }
 
   def clean(self):
     cleaned_data = super(UserForm, self).clean()

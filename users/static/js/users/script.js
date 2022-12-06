@@ -1,8 +1,5 @@
-const container = document.querySelector('.container'),
-  pwShowHide = document.querySelectorAll('.showHidePw'),
-  pwFields = document.querySelectorAll('.password'),
-  signUp = document.querySelector('.signup-link'),
-  login = document.querySelector('.login-link')
+const pwShowHide = document.querySelectorAll('.showHidePw'),
+  pwFields = document.querySelectorAll('.password')
 
 // Show/hide password and change icon
 pwShowHide.forEach((eyeIcon) => {
