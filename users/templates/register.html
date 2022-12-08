@@ -13,7 +13,7 @@
     />
 
     <!-- CSS -->
-    <link rel="stylesheet" href="{% static 'css/users/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/users.css' %}" />
 
     <title>Daftar | Dooit</title>
   </head>
@@ -25,62 +25,44 @@
         <div class="form signup">
           <span class="title">Daftar Sekarang</span>
 
-          <form action="#">
+          <form action="" method="POST">
+            {% csrf_token %}
             <div class="input-field">
-              <input type="text" placeholder="Masukkan username anda" required />
+              {{ form.username }}
               <i class="uil uil-user"></i>
             </div>
 
             <div class="input-field">
-              <input type="text" placeholder="Masukkan nama perusahaan anda" required />
-              <i class="uil uil-user"></i>
+              {{ form.company_name }}
+              <i class="uil uil-building"></i>
             </div>
 
             <div class="input-field">
-              <input type="text" placeholder="Masukkan email anda" required />
+              {{ form.email }}
               <i class="uil uil-envelope icon"></i>
             </div>
 
             <div class="input-field">
-              <input
-                type="password"
-                class="password"
-                placeholder="Masukkan password anda"
-                required
-              />
+              {{ form.password }}
               <i class="uil uil-lock icon"></i>
               <i class="uil uil-eye-slash showHidePw"></i>
             </div>
 
             <div class="input-field">
-              <input
-                type="password"
-                class="password"
-                placeholder="Masukkan ulang password anda"
-                required
-              />
-              <i class="uil uil-lock icon"></i>
+              {{ form.confirm_password }}
+              <i class="uil uil-lock-alt icon"></i>
               <i class="uil uil-eye-slash showHidePw"></i>
             </div>
 
-            <div class="checkbox-text">
-              <div class="checkbox-content">
-                <input type="checkbox" id="termCon" />
-                <label for="termCon" class="text"
-                  >I accepted all terms and conditions</label
-                >
-              </div>
-            </div>
-
             <div class="input-field button">
-              <input type="button" value="Daftar" />
+              <input type="submit" value="Daftar" />
             </div>
           </form>
 
           <div class="login-signup">
             <span class="text"
-              >Sudah punya akun Dooit?
-              <a href="#" class="text login-link">Masuk</a>
+            >Sudah punya akun Dooit?
+            <a href="{% url 'login' %}" class="text login-link">Masuk</a>
             </span>
           </div>
         </div>

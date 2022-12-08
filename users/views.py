@@ -27,9 +27,8 @@ def register(request):
   if request.user.is_authenticated:
     messages.warning(request, 'You are already logged in!')
     return redirect('/')
-  elif request.POST == 'POST':
+  elif request.method == 'POST':
     form = UserForm(request.POST)
-
     if form.is_valid():
       # Create the user using create_user method from CustomUser class
       company_name = form.cleaned_data['company_name']
@@ -40,8 +39,10 @@ def register(request):
       user.role = CustomUser.PENCATAT
       user.save()
       messages.success(request, 'Your account has been registered sucessfully!')
-      return redirect('/')
-  
+      return redirect('login')
+    else:
+      messages.error(request, 'Invalid form. Try again!')
+      return redirect('register')
   else:
     form = UserForm()
   
@@ -69,10 +70,11 @@ def login(request):
     else:
       messages.error(request, 'Invalid login credentials')
       return redirect('login')
+
   return render(request, 'login.html')
 
 
 def logout(request):
   auth.logout(request)
   messages.info(request, 'You are logged out.')
-  return redirect('login')
+  return redirect('/')

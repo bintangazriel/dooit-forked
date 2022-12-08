@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} List Konsultasi Anda Saat Ini {% endblock title %}
+
+{% block content %}
+<div class="card">
+  <div class="card-header pb-0">
+    <h3 class="mb-0">Konsultasi</h3>
+    <hr class="horizontal bg-primary pt-1 my-0">
+  </div>
+  <div class="card-body py-2">
+    <div class="d-flex justify-content-between align-items-center">
+      <div class="flex-fill pe-4">
+        Punya masalah atau sesuatu untuk ditanyakan? Dapatkan bantuan dari ahlinya secara langsung melalui
+        fitur konsultasi kami dengan konsultan keuangan yang sudah terverfikasi dan bersertifikat resmi
+      </div>
+      <div class="py-2">
+        <a href="{% url 'konsultasi:pilih_konsultan' %}">
+          <div class="btn btn-lg btn-dark mb-0 text-center">Mulai Konsultasi</div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row m-6 mx-sm-4">
+
+  <div class="col-xl-4 col-sm-6 col-12 mb-4">
+    <div class="card">
+      <div class="card-header bg-tertiary pb-0"></div>
+      <div class="card-body bg-tertiary">
+        <div class="d-flex">
+          <div class="py-2">
+
+          </div>
+          <div class="flex-fill">
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endblock content %}
