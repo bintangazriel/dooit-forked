@@ -18,12 +18,19 @@
           <h5 class="text-center">Formulir Pengajuan Pendaftaran Konsultasi</h5>
         </div>
         <div class="card-body">
-          <form role="form">
+          <form role="form" action="" method="post">
+            {% csrf_token %}
             <div class="mb-3">
-              <input type="text" class="form-control" placeholder="Name" aria-label="Name">
+              <label for="input-konsultan" class="form-control-label">Nama Konsultan</label>
+              <input type="text" value="{{ konsultan.first_name }} {{ konsultan.last_name }}" class="form-control" disabled />
             </div>
             <div class="mb-3">
-              <input type="email" class="form-control" placeholder="Email" aria-label="Email">
+              <label for="input-alasan" class="form-control-label">Alasan Konsultasi</label>
+              {{ form.alasan }}
+            </div>
+            <div class="mb-3">
+              <label for="input-tanggal" class="form-control-label">Tanggal Konsultasi</label>
+              {{ form.tanggal }}
             </div>
             <div class="text-center">
               <button type="submit" class="btn btn-dark w-100 my-4 mb-2">Submit</button>

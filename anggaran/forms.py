@@ -8,17 +8,32 @@ class AnggaranForm(forms.ModelForm):
         fields = ['nominal', 'deskripsi', 'kategori', 'tanggal_mulai', 'tanggal_selesai']
 
         widgets = {
+                    'nominal': forms.NumberInput(
+                        attrs={'class': 'form-control',
+                        'placeholder': 'Masukkan nominal anggaran'
+                        }),
+
+                    'deskripsi': forms.TextInput(
+                        attrs={'class': 'form-control',
+                        'placeholder': 'Masukkan deskripsi anggaran'
+                        }),
+
+                    'kategori': forms.Select(
+                        attrs={'class': 'form-select', 
+                        'placeholder': 'Pilih kategori anggaran'
+                        }),
+
                     'tanggal_mulai': forms.DateInput(
-                        format=('%Y-%m-%d'),
+                        # format=('%d-%m-%Y'),
                         attrs={'class': 'form-control', 
-                            'placeholder': 'Select a date',
+                            'placeholder': 'Pilih tanggal anggaran dimulai',
                             'type': 'date'
                             }),
 
                     'tanggal_selesai': forms.DateInput(
-                        format=('%Y-%m-%d'),
+                        # format=('%d-%m-%Y'),
                         attrs={'class': 'form-control', 
-                            'placeholder': 'Select a date',
+                            'placeholder': 'Pilih tanggal anggaran selesai',
                             'type': 'date'
                             })
         }

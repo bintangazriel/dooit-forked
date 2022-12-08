@@ -1,25 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <table>
-        {% if kategoris %}
-        <tr>
-            <th>Nama</th>
-            <th>Jenis</th>
-        </tr>
-            {% for kategori in kategoris %}
-            <tr>
-                <td>{{ kategori.nama }}</td>
-                <td>{{ kategori.jenis_kategori }}</td>
-            </tr>
-            {% endfor %}
-        {% endif %}
-     </table>
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Daftar Kategori {% endblock title %}
+
+{% block content %}
+    <div class="container">
+        <div class="row mt-4 justify-content-center">
+          <div class="col-12 mx-auto">
+            <div class="card z-index-0">
+              <div class="card-header pb-2">
+                <div class="d-flex flex-row-reverse">
+                    <a href="{% url 'kategori:buat_kategori' %}">
+                    <div class="btn btn-icon btn-3 btn-dark mb-4">
+                        <span class="btn-inner--text">Buat Kategori</span>
+                        <span class="btn-inner--icon me-2 ms-2"><i class="fa fa-plus"></i></span>
+                    </div>
+                    </a>
+                </div>
+                <h3 class="text-center">Daftar Kategori</h3>
+              </div>
+              <div class="card-body">
+                <!-- input here -->
+                <h4 class="mx-4">Kategori Pemasukan</h4>
+                <div class="row">
+                    {% for kategori in kategoris_pemasukan %}
+                    <div class="col-md-6">
+
+                        <div class="card card-profile card-plain my-3">
+                            <div class="card-body text-center bg-tertiary shadow border-radius-lg p-3">
+                                <h5 class="mb-1 d-md-block">{{ kategori.nama }}</h5>
+                                <p class="mb-0 text-xs font-weight-bolder text-warning text-gradient text-uppercase">{{ kategori.jenis_kategori }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    <h4 class="mx-4 mt-4">Kategori Pengeluaran</h4>
+                    {% for kategori in kategoris_pengeluaran %}
+                    <div class="col-md-6">
+
+                        <div class="card card-profile card-plain my-3">
+                            <div class="card-body text-center bg-tertiary shadow border-radius-lg p-3">
+                                <h5 class="mb-1 d-md-block">{{ kategori.nama }}</h5>
+                                <p class="mb-0 text-xs font-weight-bolder text-warning text-gradient text-uppercase">{{ kategori.jenis_kategori }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+{% endblock content %}
