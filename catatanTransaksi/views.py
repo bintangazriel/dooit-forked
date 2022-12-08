@@ -77,8 +77,7 @@ def get_vis_laporan_keuangan(request):
 
     lst_kategori_pemasukan = get_category(transaksi_pemasukan)
     lst_kategori_pengeluaran = get_category(transaksi_pengeluaran)
-    print(lst_kategori_pemasukan)
-    print(lst_kategori_pengeluaran)
+
 
     for y in lst_kategori_pemasukan:
         finalrep_pemasukan[y.get_nama()] = get_total(y,1)
@@ -86,6 +85,4 @@ def get_vis_laporan_keuangan(request):
     for x in lst_kategori_pengeluaran:
         finalrep_pengeluaran[x.get_nama()] = get_total(x,2)
 
-    print(finalrep_pemasukan)      
-    print(1111)
     return JsonResponse({'expense_category_data': finalrep_pengeluaran,'income_category_data': finalrep_pemasukan}, safe=False)
