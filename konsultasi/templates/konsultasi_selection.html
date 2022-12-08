@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Pilih Konsultan Favoritmu {% endblock title %}
+
+{% block content %}
+<div class="card">
+  <div class="card-header pb-0">
+    <a href="{% url 'konsultasi:index' %}">
+      <div class="btn btn-sm btn-icon btn-3 btn-danger mb-4">
+        <span class="btn-inner--icon me-2"><i class="fa fa-arrow-left"></i></span>
+        <span class="btn-inner--text">Kembali</span>
+      </div>
+    </a>
+    <h3 class="mb-0">Daftar Konsultan Terbaik Kami yang Sedang Available Saat Ini</h3>
+    <hr class="horizontal bg-primary pt-1 my-0">
+  </div>
+  <div class="card-body p-2"></div>
+</div>
+<div class="row mt-5 mx-6 mx-sm-4">
+
+  <div class="col-xl-4 col-sm-6 col-12 mb-4">
+    <div class="card">
+      <div class="card-header bg-tertiary pb-0"></div>
+      <div class="card-body bg-tertiary">
+        <div class="d-flex">
+          <div class="py-2">
+
+          </div>
+          <div class="flex-fill">
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endblock content %}

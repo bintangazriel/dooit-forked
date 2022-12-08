@@ -3616,6 +3616,12 @@ textarea.form-control.is-invalid {
   }
 }
 
+@media (min-width: 768px) {
+  .btn-lg {
+    white-space: nowrap;
+  }
+}
+
 .btn:hover {
   color: var(--bs-btn-hover-color);
   background-color: var(--bs-btn-hover-bg);
@@ -3977,10 +3983,11 @@ fieldset:disabled .btn {
 
 .btn-lg,
 .btn-group-lg>.btn {
-  --bs-btn-padding-y: 0.875rem;
-  --bs-btn-padding-x: 4rem;
+  --bs-btn-padding-x: 1rem;
+  --bs-btn-padding-y: 1.2rem;
   --bs-btn-font-size: 0.875rem;
   --bs-btn-border-radius: 0.5rem;
+  padding: var(--bs-btn-padding-y) var(--bs-btn-padding-x) !important;
 }
 
 .btn-sm,
@@ -10585,6 +10592,10 @@ fieldset:disabled .btn {
 
 .bg-secondary {
   background-color: #8392ab !important;
+}
+
+.bg-tertiary {
+  background-color: #e8e8e8 !important;
 }
 
 .bg-success {
@@ -20855,6 +20866,11 @@ fieldset:disabled .btn {
 .card .card-body {
   font-family: "Open Sans", sans-serif;
   padding: 1.5rem;
+}
+
+.card-body.bg-tertiary {
+  border-bottom-right-radius: 1rem !important;
+  border-bottom-left-radius: 1rem !important;
 }
 
 .card.card-plain {
