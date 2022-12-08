@@ -12,5 +12,14 @@ class Anggaran(models.Model):
     tanggal_selesai = models.DateField()
 
     def __str__(self):
-        return self.kategori
+        return self.kategori.get_nama()
+
+    def get_pengeluaran(self):
+        return self.kategori.get_kategori_nomimal(self.tanggal_mulai, self.tanggal_selesai)
+
+    def get_sisa(self):
+        return self.nominal - self.get_pengeluaran()
+
+    def get_persentase(self):
+        return int((self.nominal - self.get_sisa())/self.nominal * 100)
     
