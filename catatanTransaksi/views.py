@@ -68,7 +68,7 @@ def view_laporan_keuangan(request):
 
 def get_vis_laporan_keuangan(request):
     todays_date = datetime.date.today()
-    six_months_ago = todays_date-datetime.timedelta(days=30)
+    # six_months_ago = todays_date-datetime.timedelta(days=30)
     transaksi_pemasukan = CatatanTransaksi.objects.filter(jenis=1)
     transaksi_pengeluaran = CatatanTransaksi.objects.filter(jenis=2)
     finalrep_pengeluaran = {}
