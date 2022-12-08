@@ -1,8 +1,7 @@
-const renderChart = (data, labels) => {
-    var ctx = document.getElementById("myChart1").getContext("2d");
-
-    var myChart1 = new Chart(ctx, {
-      type: "doughnut",
+const renderChart2 = (data, labels) => {
+    var ctx = document.getElementById("myChart2").getContext("2d");
+    var myChart2 = new Chart(ctx, {
+      type: "bar",
       data: {
         labels: labels,
         datasets: [
@@ -38,20 +37,20 @@ const renderChart = (data, labels) => {
     });
   };
   
-  const getChartData = () => {
+  const getChartData2 = () => {
     console.log("fetching");
     fetch("get_laporan_keuangan")
       .then((res) => res.json())
       .then((results) => {
         console.log("results", results);
-        const category_data = results.expense_category_data;
+        const category_data = results.income_category_data;
         const [labels, data] = [
           Object.keys(category_data),
           Object.values(category_data),
         ];
   
-        renderChart(data, labels);
+        renderChart2(data, labels);
       });
   };
   
-  document.onload = getChartData();
+  document.onload = getChartData2();
