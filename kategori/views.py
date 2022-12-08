@@ -2,6 +2,7 @@ from django.http import HttpResponseRedirect
 from kategori.models import Kategori
 from kategori.forms import KategoriForm
 from django.http.response import HttpResponse
+from django.urls import reverse
 from kategori.models import Kategori
 from users.views import *
 from django.contrib.auth.decorators import login_required, user_passes_test
