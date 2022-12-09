@@ -3,8 +3,8 @@ from catatanTransaksi.views import buat, index, detail, load_kategoris, get_vis_
 
 urlpatterns = [
     path('', index, name='index'),
-    path('buat', buat, name='buat_catatan_transaksi'),
-    path('detail/<int:id>', detail, name='detail_catatan_transaksi'),
+    path('buat', buat, name='buat'),
+    path('detail/<int:id>', detail, name='detail'),
     path('ajax/load-kategoris/', load_kategoris, name='ajax_load_kategoris'),
     path('get_vis_pengeluaran_by_kategori', get_vis_pengeluaran_by_kategori, name='get_vis_pengeluaran_by_kategori'),
     path('get_vis_pemasukan_pengeluaran_by_waktu', get_vis_pemasukan_pengeluaran_by_waktu, name='get_vis_pemasukan_pengeluaran_by_waktu'),

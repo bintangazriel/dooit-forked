@@ -1,38 +1,84 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buat Catatan Transaksi</title>
-</head>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Buat Catatan Transaksi {% endblock title %}
+
+{% block content %}
+<div class="container">
+  <div class="row mt-4 justify-content-center">
+    <div class="col-12 mx-auto">
+      <div class="card z-index-0">
+        <div class="card-header pb-2">
+          <a href="{% url 'catatan-transaksi:index' %}">
+            <div class="btn btn-sm btn-icon btn-3 btn-danger mb-4">
+              <span class="btn-inner--icon me-2"><i class="fa fa-arrow-left"></i></span>
+              <span class="btn-inner--text">Kembali</span>
+            </div>
+          </a>
+          <h5 class="text-center">Formulir Pembuatan Catatan Transaksi</h5>
+        </div>
+        <div class="card-body">
+          <form method="post" id="catatanTransaksiForm" data-kategoris-url="{% url 'catatan-transaksi:ajax_load_kategoris' %}" novalidate>
+            {% csrf_token %}
+            <div class="mb-3">
+              {{ form.deskripsi.errors }}
+              <label for="{{ form.deskripsi.id_for_label }}">Deskripsi</label>
+              {{ form.deskripsi }}
+            </div>
+            <div class="mb-3">
+              {{ form.nominal.errors }}
+              <label for="{{ form.nominal.id_for_label }}">nominal</label>
+              {{ form.nominal }}
+            </div>
+            <div class="mb-3">
+              {{ form.tanggal.errors }}
+              <label for="{{ form.tanggal.id_for_label }}">tanggal</label>
+              {{ form.tanggal }}
+            </div>
+            <div class="mb-3">
+              {{ form.jenis.errors }}
+              <label for="{{ form.jenis.id_for_label }}">jenis</label>
+              {{ form.jenis }}
+            </div>
+            <div class="mb-3">
+              {{ form.kategori.errors }}
+              <label for="{{ form.kategori.id_for_label }}">kategori</label>
+              {{ form.kategori }}
+            </div>
+            <div class="text-center">
+              <button type="submit" class="btn btn-dark w-100 my-4 mb-2">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+  $("#id_jenis").change(function () {
+    var url = $("#catatanTransaksiForm").attr("data-kategoris-url");
+    var jenisId = $(this).val();
+
+    $.ajax({
+      url: url,
+      data: {
+        'jenis': jenisId
+      },
+      success: function (data) {
+        $("#id_kategori").html(data);
+      }
+    });
+
+  });
+</script>
+{% endblock content %}
 <body>
-    <form method="post" id="catatanTransaksiForm" data-kategoris-url="{% url 'ajax_load_kategoris' %}" novalidate>
-        {% csrf_token %}
-        <table>
-          {{ form.as_table }}
-        </table>
-        <button type="submit">Save</button>
-      </form>
-    
-      <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-      <script>
-        $("#id_jenis").change(function () {
-          var url = $("#catatanTransaksiForm").attr("data-kategoris-url");
-          var jenisId = $(this).val();
-    
-          $.ajax({
-            url: url,
-            data: {
-              'jenis': jenisId
-            },
-            success: function (data) {
-              $("#id_kategori").html(data);
-            }
-          });
-    
-        });
-      </script>
-</form>
+  <form method="post" id="catatanTransaksiForm" data-kategoris-url="{% url 'catatan-transaksi:ajax_load_kategoris' %}" novalidate>
+    {% csrf_token %}
+    <table>
+      {{ form.as_table }}
+    </table>
+    <button type="submit">Save</button>
+  </form>
 </body>
-</html>
