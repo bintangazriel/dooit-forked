@@ -17,7 +17,7 @@ class JenisTransaksi(models.Model):
 
 class CatatanTransaksi(models.Model):
     pencatat = models.ForeignKey('users.CustomUser', on_delete=models.CASCADE)
-    deskripsi = models.CharField(verbose_name="Deskripsi Transaksi", null=True, blank=True, max_length = 30)
+    deskripsi = models.CharField(verbose_name="Deskripsi Transaksi", null=True, blank=True, max_length = 50)
     nominal = models.FloatField(verbose_name="Jumlah Transaksi")
     tanggal = models.DateField(verbose_name="Tanggal Transaksi")
     kategori = models.ForeignKey('kategori.Kategori', on_delete=models.RESTRICT)
