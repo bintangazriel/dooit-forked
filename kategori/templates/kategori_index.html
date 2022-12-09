@@ -9,7 +9,19 @@
           <div class="col-12 mx-auto">
             <div class="card z-index-0">
               <div class="card-header pb-2">
-                <div class="d-flex flex-row-reverse">
+
+                    {% if messages %}
+                        {% for msg in messages %}
+                            <div class="alert alert-info" role="alert">
+                                <div class="text-white">
+                                    <strong>Sukses!</strong> 
+                                    {{ msg }}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    
+                    <div class="d-flex flex-row-reverse">
                     <a href="{% url 'kategori:buat_kategori' %}">
                     <div class="btn btn-icon btn-3 btn-dark mb-4">
                         <span class="btn-inner--text">Buat Kategori</span>
@@ -20,7 +32,6 @@
                 <h3 class="text-center">Daftar Kategori</h3>
               </div>
               <div class="card-body">
-                <!-- input here -->
                 <h4 class="mx-4">Kategori Pemasukan</h4>
                 <div class="row">
                     {% for kategori in kategoris_pemasukan %}
