@@ -11,6 +11,18 @@
     <div class="col-12 mx-auto">
       <div class="card z-index-0">
         <div class="card-header pb-2">
+
+            {% if messages %}
+                {% for msg in messages %}
+                    <div class="alert alert-info" role="alert">
+                        <div class="text-white">
+                            <strong>Sukses!</strong> 
+                            {{ msg }}
+                          </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+            
             <a href="{% url 'anggaran:buat_anggaran' %}">
                 <div class="d-flex flex-row-reverse">
                     <div class="btn btn-icon btn-3 btn-dark mb-4">
