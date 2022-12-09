@@ -1,7 +1,7 @@
 const renderChart = (data, labels) => {
     var ctx = document.getElementById("myChart1").getContext("2d");
     var myChart1 = new Chart(ctx, {
-      type: "doughnut",
+      type: "polarArea",
       data: {
         labels: labels,
         datasets: [
@@ -39,7 +39,7 @@ const renderChart = (data, labels) => {
   
   const getChartData = () => {
     console.log("fetching");
-    fetch("get_laporan_keuangan")
+    fetch("get_vis_pengeluaran_by_kategori")
       .then((res) => res.json())
       .then((results) => {
         console.log("results", results);
