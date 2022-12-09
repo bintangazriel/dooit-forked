@@ -22,3 +22,6 @@ class CatatanTransaksi(models.Model):
     tanggal = models.DateField(verbose_name="Tanggal Transaksi")
     kategori = models.ForeignKey('kategori.Kategori', on_delete=models.RESTRICT)
     jenis = models.ForeignKey(JenisTransaksi, on_delete=models.RESTRICT)
+
+    def get_tanggal(self):
+        return self.tanggal
