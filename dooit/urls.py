@@ -26,6 +26,6 @@ urlpatterns = [
     path('kategori/', include('kategori.urls')),
     path('konsultan/', include('konsultan.urls')),
     path('konsultasi/', include('konsultasi.urls')),
-    path('catatan-transaksi/', include('catatanTransaksi.urls')),
+    path('catatan-transaksi/', include(('catatanTransaksi.urls', 'catatan-transaksi'), namespace='catatan-transaksi')),
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

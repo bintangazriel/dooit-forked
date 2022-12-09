@@ -7,24 +7,32 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from kategori.models import Kategori
 from users.views import check_role_pencatat
 from django.http import JsonResponse
-import datetime
 
-# @login_required(login_url='login')
-# @user_passes_test(check_role_pencatat)
+def get_saldo_by_jenis(pencatat, jenis):
+    catatanTransaksis = CatatanTransaksi.objects.filter(pencatat=pencatat, jenis=jenis)
+    return sum(map(lambda ct: ct.nominal, catatanTransaksis))
+    
+@login_required(login_url='login')
+@user_passes_test(check_role_pencatat)
 def index(request):
-    catatanTransaksis = CatatanTransaksi.objects.filter(pencatat=request.user)
-    response = {'catatanTransaksis': catatanTransaksis}
+    catatanTransaksis = CatatanTransaksi.objects.filter(pencatat=request.user).order_by('-tanggal')
+    saldoPemasukan = get_saldo_by_jenis(pencatat=request.user, jenis=1)
+    saldoPengeluaran = get_saldo_by_jenis(pencatat=request.user, jenis=2)
+    response = {
+        'catatanTransaksis': catatanTransaksis,
+        'totalSaldo': saldoPemasukan-saldoPengeluaran
+    }
     return render(request, 'catatan_transaksi_index.html', response)
 
-# @login_required(login_url='login')
-# @user_passes_test(check_role_pencatat)
+@login_required(login_url='login')
+@user_passes_test(check_role_pencatat)
 def detail(request, id):
     catatanTransaksi = CatatanTransaksi.objects.get(pencatat=request.user, id=id)
     response = {'catatanTransaksi': catatanTransaksi}
     return render(request, 'detail_catatan_transaksi.html', response)
 
-# @login_required(login_url='login')
-# @user_passes_test(check_role_pencatat)
+@login_required(login_url='login')
+@user_passes_test(check_role_pencatat)
 def buat(request):
     context = {}
   
@@ -69,8 +77,8 @@ def get_total_by_waktu(tanggal,jenis):
         total += item.nominal
     return total
 
-# @login_required(login_url='login')
-# @user_passes_test(check_role_pencatat)
+@login_required(login_url='login')
+@user_passes_test(check_role_pencatat)
 def view_laporan_keuangan(request):
     return render(request,'visualisasi_laporan_keuangan.html')
 

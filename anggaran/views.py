@@ -6,12 +6,18 @@ from users.views import *
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.urls import reverse
 from django.http import HttpResponseRedirect
+from django.contrib import messages
+import datetime
 
 @login_required(login_url='/login/')
 @user_passes_test(check_role_pencatat)
 def index(request):
-    anggarans = Anggaran.objects.filter(user=request.user)
+    delete_expired_anggaran(request)
+
+    today = datetime.datetime.now()
+    anggarans = Anggaran.objects.filter(user=request.user, tanggal_mulai__gte=today)
     response = {'anggarans': anggarans}
+
     return render(request, 'anggaran_index.html', response)
 
 @login_required(login_url='/login/')
@@ -25,7 +31,17 @@ def buat_anggaran(request):
         anggaran_form = form.save(commit=False)
         anggaran_form.user = request.user
         anggaran_form.save()
+        messages.success(request, 'Anggaran baru berhasil dibuat!')
         return HttpResponseRedirect(reverse('anggaran:index'))
-    
+
+    elif form.errors:
+        messages.error(request, 'Anggaran dengan kategori ini sudah pernah dibuat dan masih berjalan!')
+
     context['form']= form
     return render(request, "buat_anggaran.html", context)
+
+def delete_expired_anggaran(request):
+    today = datetime.datetime.now()
+    expired_anggarans = Anggaran.objects.filter(user=request.user, tanggal_mulai__lt=today)
+    for  anggaran in expired_anggarans:
+        anggaran.delete()

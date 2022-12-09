@@ -26,7 +26,11 @@ def buat_kategori(request):
         kategori_form = form.save(commit=False)
         kategori_form.user = request.user
         kategori_form.save()
+        messages.success(request, 'Kategori baru berhasil dibuat!')
         return HttpResponseRedirect(reverse('kategori:index'))
+    
+    elif form.errors:
+        messages.error(request, 'Kategori ini sudah pernah dibuat!')
     
     context['form']= form
     return render(request, "buat_kategori.html", context)
