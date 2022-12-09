@@ -1,5 +1,8 @@
 const renderChart2 = (data1,data2) => {
     var ctx = document.getElementById("myChart2").getContext("2d");
+    let gradient = ctx.createLinearGradient(0,0,0,400);
+    gradient.addColorStop(0,"rgba(58,123,213,1)")
+    gradient.addColorStop(1,"rgba(0,210,255,0.3)")
     const myChart2 = new Chart(ctx, {
         type: 'line',
         data: {
@@ -7,17 +10,49 @@ const renderChart2 = (data1,data2) => {
                 label: 'Pemasukan',
                 data: data1,
                 // this dataset is drawn below
-                order: 2
+                backgroundColor: [
+                    "rgba(255, 99, 132, 0.2)",
+                    "rgba(54, 162, 235, 0.2)",
+                    "rgba(255, 206, 86, 0.2)",
+                    "rgba(75, 192, 192, 0.2)",
+                    "rgba(153, 102, 255, 0.2)",
+                    "rgba(255, 159, 64, 0.2)",
+                  ],
+                  borderColor: [
+                    "rgba(255, 99, 132, 1)",
+                    "rgba(54, 162, 235, 1)",
+                    "rgba(255, 206, 86, 1)",
+                    "rgba(75, 192, 192, 1)",
+                    "rgba(153, 102, 255, 1)",
+                    "rgba(255, 159, 64, 1)",
+                  ],
+                order: 2,
             }, {
                 label: 'Pengeluaran',
                 data: data2,
+                backgroundColor: [
+                    "rgba(255, 99, 132, 0.2)",
+                    "rgba(54, 162, 235, 0.2)",
+                    "rgba(255, 206, 86, 0.2)",
+                    "rgba(75, 192, 192, 0.2)",
+                    "rgba(153, 102, 255, 0.2)",
+                    "rgba(255, 159, 64, 0.2)",
+                  ],
+                  borderColor: [
+                    "rgba(255, 99, 132, 1)",
+                    "rgba(54, 162, 235, 1)",
+                    "rgba(255, 206, 86, 1)",
+                    "rgba(75, 192, 192, 1)",
+                    "rgba(153, 102, 255, 1)",
+                    "rgba(255, 159, 64, 1)",
+                  ],
                 type: 'line',
-                // this dataset is drawn on top
                 order: 1
             }],
             labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
         },
         options: {
+            responsive: true,
             title: {
               display: true,
               text: "Expenses per category",

@@ -64,21 +64,15 @@ def get_time():
 
 
 def get_total_by_kategori(kategori,jenis):
-    
     total = 0
     transaksi_kategori = CatatanTransaksi.objects.filter(kategori=kategori,jenis=jenis)
-    
     for item in transaksi_kategori:
         total += item.nominal
     return total
 
 def get_total_by_waktu(tanggal,jenis):
     total = 0
-
-    
     transaksi_tanggal = CatatanTransaksi.objects.filter(tanggal__month=tanggal+1,jenis=jenis)
-        
-    
     for item in transaksi_tanggal:
         total += item.nominal
     return total
@@ -88,21 +82,14 @@ def get_total_by_waktu(tanggal,jenis):
 def view_laporan_keuangan(request):
     return render(request,'visualisasi_laporan_keuangan.html')
 
-
 def get_vis_pemasukan_pengeluaran_by_waktu(request):
     finalrep_pengeluaran = {}
-    finalrep_pemasukan = {}
-   
-    
+    finalrep_pemasukan = {}  
     lst_time_label = get_time()
- 
     for z in lst_time_label:
-        print(z)
         finalrep_pemasukan[z] = get_total_by_waktu(lst_time_label.index(z),1)
         finalrep_pengeluaran[z] = get_total_by_waktu(lst_time_label.index(z),2)
-
     return JsonResponse({'expense_time_data': finalrep_pengeluaran,'income_time_data': finalrep_pemasukan}, safe=False)
-
 
 def get_vis_pengeluaran_by_kategori(request):
     transaksi_pengeluaran = CatatanTransaksi.objects.filter(jenis=2)
@@ -111,3 +98,18 @@ def get_vis_pengeluaran_by_kategori(request):
     for x in lst_kategori_pengeluaran:
         finalrep_pengeluaran[x.get_nama()] = get_total_by_kategori(x,2)
     return JsonResponse({'expense_category_data': finalrep_pengeluaran}, safe=False)
+
+def get_total_pemasukan(request):
+    total = 0
+    transaksi_pemasukan = CatatanTransaksi.objects.filter(jenis=1)
+    for item in transaksi_pemasukan:
+        total += item.nominal
+    print(total)
+    return render(request, 'visualisasi_laporan_keuangan.html', {'total_pemasukan': total})
+
+def get_total_pengeluaran(request):
+    total = 0
+    transaksi_pengeluaran = CatatanTransaksi.objects.filter(jenis=2)
+    for item in transaksi_pengeluaran:
+        total += item.nominal
+    return render(request, 'visualisasi_laporan_keuangan.html', {'total_pengeluaran': total})
