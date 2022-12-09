@@ -19,12 +19,9 @@ class Kategori(models.Model):
 
     def get_kategori_nomimal(self, start_date, end_date):
         catatan_transaksi = self.get_list_catatan_transaksi()
-        print(catatan_transaksi)
         nominal = 0
 
         for catatan in catatan_transaksi:
-            print(catatan.tanggal)
             if catatan.tanggal >= start_date and catatan.tanggal <= end_date:
-                print("masuk")
                 nominal = nominal + catatan.nominal
         return nominal
