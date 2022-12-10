@@ -54,7 +54,7 @@ def buat(request):
 
 def load_kategoris(request):
     jenis_kategori_id = request.GET.get('jenis')
-    kategoris = Kategori.objects.filter(jenis_kategori_id=jenis_kategori_id)
+    kategoris = Kategori.objects.filter(user=request.user, jenis_kategori_id=jenis_kategori_id)
     return render(request, 'kategori_dropdown_options.html', {'kategoris': kategoris})
 
 def get_category(transaksi):
@@ -68,16 +68,16 @@ def get_time():
     return lst_month
 
 
-def get_total_by_kategori(kategori,jenis):
+def get_total_by_kategori(request, kategori,jenis):
     total = 0
-    transaksi_kategori = CatatanTransaksi.objects.filter(kategori=kategori,jenis=jenis)
+    transaksi_kategori = CatatanTransaksi.objects.filter(pencatat=request.user, kategori=kategori,jenis=jenis)
     for item in transaksi_kategori:
         total += item.nominal
     return total
 
-def get_total_by_waktu(tanggal,jenis):
+def get_total_by_waktu(request,tanggal,jenis):
     total = 0
-    transaksi_tanggal = CatatanTransaksi.objects.filter(tanggal__month=tanggal+1,jenis=jenis)
+    transaksi_tanggal = CatatanTransaksi.objects.filter(pencatat=request.user, tanggal__month=tanggal+1,jenis=jenis)
     for item in transaksi_tanggal:
         total += item.nominal
     return total
@@ -87,9 +87,9 @@ def get_total_by_waktu(tanggal,jenis):
 def view_laporan_keuangan(request):
   
     total_pemasukan = 0
-    transaksi_pemasukan = CatatanTransaksi.objects.filter(jenis=1)
+    transaksi_pemasukan = CatatanTransaksi.objects.filter(pencatat=request.user, jenis=1)
     total_pengeluaran = 0
-    transaksi_pengeluaran = CatatanTransaksi.objects.filter(jenis=2)
+    transaksi_pengeluaran = CatatanTransaksi.objects.filter(pencatat=request.user, jenis=2)
     for item in transaksi_pemasukan:
         total_pemasukan += item.nominal
 
@@ -106,14 +106,14 @@ def get_vis_pemasukan_pengeluaran_by_waktu(request):
     finalrep_pemasukan = {}  
     lst_time_label = get_time()
     for z in lst_time_label:
-        finalrep_pemasukan[z] = get_total_by_waktu(lst_time_label.index(z),1)
-        finalrep_pengeluaran[z] = get_total_by_waktu(lst_time_label.index(z),2)
+        finalrep_pemasukan[z] = get_total_by_waktu(request, lst_time_label.index(z),1)
+        finalrep_pengeluaran[z] = get_total_by_waktu(request, lst_time_label.index(z),2)
     return JsonResponse({'expense_time_data': finalrep_pengeluaran,'income_time_data': finalrep_pemasukan}, safe=False)
 
 def get_vis_pengeluaran_by_kategori(request):
-    transaksi_pengeluaran = CatatanTransaksi.objects.filter(jenis=2)
+    transaksi_pengeluaran = CatatanTransaksi.objects.filter(pencatat=request.user, jenis=2)
     finalrep_pengeluaran = {}
     lst_kategori_pengeluaran = get_category(transaksi_pengeluaran)
     for x in lst_kategori_pengeluaran:
-        finalrep_pengeluaran[x.get_nama()] = get_total_by_kategori(x,2)
+        finalrep_pengeluaran[x.get_nama()] = get_total_by_kategori(request, x,2)
     return JsonResponse({'expense_category_data': finalrep_pengeluaran}, safe=False)
