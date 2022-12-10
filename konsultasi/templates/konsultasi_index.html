@@ -6,6 +6,7 @@
 {% block content %}
 <div class="card">
   <div class="card-header pb-0">
+    {% include 'includes/alert.html' %}
     <h3 class="mb-0">Konsultasi</h3>
     <hr class="horizontal bg-primary pt-1 my-0">
   </div>
@@ -24,6 +25,7 @@
   </div>
 </div>
 <div class="row m-6 mx-sm-4">
+  {% if list_konsultasi %}
   {% for konsultasi in list_konsultasi %}
   <div class="col-xl-4 col-sm-6 col-12 mb-4">
     <div class="card">
@@ -48,4 +50,20 @@
   </div>
 </div>
 {% endfor %}
+{% else %}
+<div class="card">
+  <div class="card-header p-0"></div>
+  <div class="card-body p-0">
+    <div class="row mt-5 mx-6 mx-sm-4">
+      <div class="text-center pb-4">
+        <i class="fa fa-sad-tear text-dark text-9xl opacity-10 m-3"></i>
+        <h6 class="font-weight-bold mb-0">Tidak ada daftar konsultan</h6>
+        <p class="text-sm">
+          Mohon maaf, sepertinya belum ada konsultan kami yang available untuk saat ini
+        </p>
+      </div>
+    </div>
+  </div>
+</div>   
+{% endif %}
 {% endblock content %}
