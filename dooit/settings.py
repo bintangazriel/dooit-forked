@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 import os
+import dj_database_url
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -27,6 +28,8 @@ SECRET_KEY = 'django-insecure-9mca@gc30#6e(8$$8ak@&)tos_qmb9he6i=zneq7=+q#8!ek!5
 # DATABASE_URL is provided by Heroku if a database add-on is added
 # (e.g. Heroku Postgres).
 # PRODUCTION = os.getenv('DATABASE_URL') is not None
+
+PRODUCTION = os.getenv('DATABASE_URL') is not None
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -96,16 +99,19 @@ WSGI_APPLICATION = 'dooit.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'railway',
-        'USER': 'postgres',
-        'PASSWORD': 'JQxifSVVFpbs98w3hMvh',
-        'HOST': 'containers-us-west-132.railway.app',
-        'PORT': 7549
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# Set database settings automatically using DATABASE_URL.
+if PRODUCTION:
+    DATABASES['default'] = dj_database_url.config(
+        conn_max_age=600, ssl_require=True
+    )
 
 AUTH_USER_MODEL = 'users.CustomUser'
 
