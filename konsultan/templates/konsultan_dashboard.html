@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Dashboard Konsultan {% endblock title %}
+
+{% block content %}
+<div class="card mb-6">
+  <div class="card-header pb-0">
+    <h4 class="font-weight-bolder">Tabel Pendaftar Konsultasi</h4>
+  </div>
+  <div class="card-body px-0 pt-0 pb-2">
+    <div class="table-responsive">
+      <table class="table align-items-center mb-0">
+        <thead>
+          <tr>
+            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Klien</th>
+            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Alasan</th>
+            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
+            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tanggal</th>
+            <th class="text-secondary opacity-7"></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% if list_konsultasi %}
+          {% for konsultasi in list_konsultasi %}
+          <tr>
+            <td>
+              <div class="d-flex px-2 py-1">
+                <div>
+                  <img src="{% static 'images/default.png' %}"
+                    class="avatar avatar-sm me-3">
+                </div>
+                <div class="d-flex flex-column justify-content-center">
+                  <h6 class="mb-0 text-xs">{{ konsultasi.klien.company_name }}</h6>
+                  <p class="text-xs text-secondary mb-0">{{ konsultasi.klien.email }}</p>
+                </div>
+              </div>
+            </td>
+            <td>
+              <p class="text-xs font-weight-bold mb-0">{{ konsultasi.alasan }}</p>
+            </td>
+            <td class="align-middle text-center text-sm">
+              <span class="badge badge-sm bg-gradient-secondary">{{ konsultasi.status }}</span>
+            </td>
+            <td class="align-middle text-center">
+              <span class="text-secondary text-xs font-weight-bold">{{ konsultasi.tanggal }}</span>
+            </td>
+            <td class="align-middle">
+              <a href="{% url 'konsultasi:terima_konsultasi' konsultasi.id %}" class="text-secondary font-weight-bold text-xs me-1">
+                <div class="badge badge-sm bg-success">
+                  <i class="fa fa-check text-white text-xs opacity-10"></i>
+                </div>
+              </a>
+              <a href="{% url 'konsultasi:tolak_konsultasi' konsultasi.id %}" class="text-secondary font-weight-bold text-xs ms-1">
+                <div class="badge badge-sm bg-danger">
+                  <i class="fa fa-times text-white text-xs opacity-10"></i>
+                </div>
+              </a>
+            </td>
+          </tr>
+          {% endfor %}
+          {% else %}
+          <tr>
+            <td></td>
+            <td></td>
+            <td class="text-center">
+              <i class="fa fa-frown text-dark text-9xl opacity-10 m-3"></i>
+              <h6 class="font-weight-bold mb-0">Tidak ada konten</h6>
+              <p class="text-sm mb-0">
+                Maaf, sepertinya belum ada yang mengajukan pendaftaran konsultasi kepada anda saat ini
+              </p>
+            </td>
+          </tr>
+          {% endif %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="card my-5"></div>
+
+<h4>Daftar Konsultasi yang Sedang Berlangsung</h4>
+<hr class="horizontal bg-primary py-1 my-0 rounded">
+<div class="row my-4">
+{% for konsultasi in konsultasi_berlangsung %}
+<div class="col-xl-4 col-sm-6 col-12 mb-4">
+  <div class="card">
+    <div class="card-body bg-tertiary">
+      <div class="d-flex justify-content-around align-items-center">
+        <div class="col-md-3 col-4">
+          <div class="avatar avatar-lg bg-primary shadow-primary text-center rounded-circle" width="200">
+            <img src="{% static 'images/default.png' %}"
+              class="avatar bg-info">
+            </img>
+          </div>
+        </div>
+        <div class="col-md-8 col-sm-7 col-8">
+          <h3 class="text-lg mb-0">{{ konsultasi.klien.company_name }}</h3>
+          <div class="text-sm mb-2">{{ konsultasi.tanggal }}</div>
+          <div class="text-sm">
+            <span class="badge badge-sm bg-gradient-secondary">{{ konsultasi.status }}</span>
+          </div>
+        </div>
+      </div>
+    </div> 
+  </div>
+</div>
+{% endfor %}
+
+{% endblock %}
