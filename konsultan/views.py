@@ -11,8 +11,8 @@ from users.views import check_role_konsultan
 @user_passes_test(check_role_konsultan)
 def dashboard_konsultan(request):
     konsultan = Konsultan.objects.get(user=request.user)
-    list_konsultasi = Konsultasi.objects.filter(konsultanin=[konsultan.id], status='Menunggu Persetujuan')
-    konsultasi_berlangsung = Konsultasi.objects.filter(konsultanin=[konsultan.id], is_accepted=True)
+    list_konsultasi = Konsultasi.objects.filter(konsultan__in=[konsultan.id], status='Menunggu Persetujuan')
+    konsultasi_berlangsung = Konsultasi.objects.filter(konsultan__in=[konsultan.id], is_accepted=True)
 
     response = {
         'list_konsultasi': list_konsultasi,

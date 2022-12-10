@@ -1,63 +1,62 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- ===== Iconscout CSS ===== -->
-    <link
-      rel="stylesheet"
-      href="https://unicons.iconscout.com/release/v4.0.0/css/line.css"
-    />
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="{% static 'css/users.css' %}" />
+  <!-- ===== Iconscout CSS ===== -->
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
 
-    <title>Masuk | Dooit</title>
-  </head>
+  <!-- CSS -->
+  <link rel="stylesheet" href="{% static 'css/users.css' %}" />
 
-  <body>
-    <div class="container">
-      <div class="forms">
-        <div class="form login">
-          <span class="title">Masuk Sekarang</span>
+  <title>Masuk | Dooit</title>
+</head>
 
-          <form action="" method="POST">
-            {% csrf_token %}
-            <div class="input-field">
-              <input type="text" name="email" placeholder="Masukkan email anda" required />
-              <i class="uil uil-envelope icon"></i>
-            </div>
+<body>
+  <div class="container">
+    {% if messages %}
+    {% for msg in messages %}
+    <div class="alert danger-alert" role="alert">
+      <div class="text-white">{{ msg }}</div>
+    </div>
+    {% endfor %}
+    {% endif %}
+    <div class="forms">
+      <div class="form login">
+        <span class="title">Masuk Sekarang</span>
 
-            <div class="input-field">
-              <input
-                type="password"
-                name="password"
-                class="password"
-                placeholder="Masukkan password anda"
-                required
-              />
-              <i class="uil uil-lock icon"></i>
-              <i class="uil uil-eye-slash showHidePw"></i>
-            </div>
-
-            <div class="input-field button">
-              <input type="submit" value="Masuk" />
-            </div>
-          </form>
-
-          <div class="login-signup">
-            <span class="text"
-              >Belum punya akun?
-              <a href="{% url 'register' %}" class="text signup-link">Daftar sekarang</a>
-            </span>
+        <form action="" method="POST">
+          {% csrf_token %}
+          <div class="input-field">
+            <input type="text" name="email" placeholder="Masukkan email anda" required />
+            <i class="uil uil-envelope icon"></i>
           </div>
+
+          <div class="input-field">
+            <input type="password" name="password" class="password" placeholder="Masukkan password anda" required />
+            <i class="uil uil-lock icon"></i>
+            <i class="uil uil-eye-slash showHidePw"></i>
+          </div>
+
+          <div class="input-field button">
+            <input type="submit" value="Masuk" />
+          </div>
+        </form>
+
+        <div class="login-signup">
+          <span class="text">Belum punya akun?
+            <a href="{% url 'register' %}" class="text signup-link">Daftar sekarang</a>
+          </span>
         </div>
       </div>
     </div>
+  </div>
 
-    <script src="{% static 'js/users/script.js' %}"></script>
-  </body>
+  <script src="{% static 'js/users/script.js' %}"></script>
+</body>
+
 </html>
