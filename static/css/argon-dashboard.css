@@ -20165,7 +20165,7 @@ fieldset:disabled .btn {
 }
 
 .avatar img {
-  width: 100%;
+  width: 80%;
 }
 
 .avatar+.avatar-content {
@@ -20204,8 +20204,8 @@ fieldset:disabled .btn {
 }
 
 .avatar-lg {
-  width: 58px !important;
-  height: 58px !important;
+  width: 60px !important;
+  height: 60px !important;
   font-size: 0.875rem;
 }
 
@@ -20869,8 +20869,7 @@ fieldset:disabled .btn {
 }
 
 .card-body.bg-tertiary {
-  border-bottom-right-radius: 1rem !important;
-  border-bottom-left-radius: 1rem !important;
+  border-radius: 1rem !important;
 }
 
 .card.card-plain {
