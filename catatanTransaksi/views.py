@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from kategori.models import Kategori
 from users.views import check_role_pencatat
 from django.http import JsonResponse
+from django.contrib import messages
 
 def get_saldo_by_jenis(pencatat, jenis):
     catatanTransaksis = CatatanTransaksi.objects.filter(pencatat=pencatat, jenis=jenis)
@@ -42,8 +43,12 @@ def buat(request):
         catatan_transaksi_baru = form.save(commit=False)
         catatan_transaksi_baru.pencatat = request.user
         catatan_transaksi_baru.save()
-        return HttpResponseRedirect(reverse('buat_catatan_transaksi'))
+        messages.success(request, 'Catatan transaksi baru berhasil dibuat!')
+        return HttpResponseRedirect(reverse('catatan-transaksi:index'))
     
+    elif form.errors:
+        messages.error(request, 'Isian formulir tidak valid!')
+
     context['form'] = form
     return render(request, "buat_catatan_transaksi.html", context)
 
