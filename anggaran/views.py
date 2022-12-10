@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from anggaran.forms import AnggaranForm
 from anggaran.models import Anggaran
+from kategori.models import Kategori
 from users.views import *
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.urls import reverse
@@ -26,6 +27,7 @@ def buat_anggaran(request):
     context = {}
   
     form = AnggaranForm(request.POST or None)
+    form.fields['kategori'].queryset = Kategori.objects.filter(user=request.user)
 
     if form.is_valid() and request.method == 'POST':
         anggaran_form = form.save(commit=False)
