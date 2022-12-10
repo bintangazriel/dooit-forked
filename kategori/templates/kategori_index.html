@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Daftar Kategori {% endblock title %}
+
+{% block content %}
+    <div class="container">
+        <div class="row mt-4 justify-content-center">
+          <div class="col-12 mx-auto">
+            <div class="card z-index-0">
+              <div class="card-header pb-2">
+                    {% include 'includes/alert.html' %}
+                    <div class="d-flex flex-row-reverse">
+                    <a href="{% url 'kategori:buat_kategori' %}">
+                    <div class="btn btn-icon btn-3 btn-dark mb-4">
+                        <span class="btn-inner--text">Buat Kategori</span>
+                        <span class="btn-inner--icon me-2 ms-2"><i class="fa fa-plus"></i></span>
+                    </div>
+                    </a>
+                </div>
+                <h3 class="text-center">Daftar Kategori</h3>
+              </div>
+              <div class="card-body">
+                <h4 class="mx-4">Kategori Pemasukan</h4>
+                <div class="row">
+                    {% for kategori in kategoris_pemasukan %}
+                    <div class="col-md-6">
+
+                        <div class="card card-profile card-plain my-3">
+                            <div class="card-body text-center bg-tertiary shadow border-radius-lg p-3">
+                                <h5 class="mb-1 d-md-block">{{ kategori.nama }}</h5>
+                                <p class="mb-0 text-xs font-weight-bolder text-warning text-gradient text-uppercase">{{ kategori.jenis_kategori }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    <h4 class="mx-4 mt-4">Kategori Pengeluaran</h4>
+                    {% for kategori in kategoris_pengeluaran %}
+                    <div class="col-md-6">
+
+                        <div class="card card-profile card-plain my-3">
+                            <div class="card-body text-center bg-tertiary shadow border-radius-lg p-3">
+                                <h5 class="mb-1 d-md-block">{{ kategori.nama }}</h5>
+                                <p class="mb-0 text-xs font-weight-bolder text-warning text-gradient text-uppercase">{{ kategori.jenis_kategori }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+{% endblock content %}

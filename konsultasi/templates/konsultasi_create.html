@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Buat Pengajuan Konsultasi Sekarang {% endblock title %}
+
+{% block content %}
+<div class="container">
+  <div class="row mt-4 justify-content-center">
+    <div class="col-12 mx-auto">
+      <div class="card z-index-0">
+        <div class="card-header pb-2">
+          {% include 'includes/alert.html' %}
+          <a href="{% url 'konsultasi:pilih_konsultan' %}">
+            <div class="btn btn-sm btn-icon btn-3 btn-danger mb-4">
+              <span class="btn-inner--icon me-2"><i class="fa fa-arrow-left"></i></span>
+              <span class="btn-inner--text">Kembali</span>
+            </div>
+          </a>
+          <h5 class="text-center">Formulir Pengajuan Pendaftaran Konsultasi</h5>
+        </div>
+        <div class="card-body">
+          <form role="form" action="" method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="input-konsultan" class="form-control-label">Nama Konsultan</label>
+              <input type="text" value="{{ konsultan }}" class="form-control" disabled />
+            </div>
+            <div class="mb-3">
+              <label for="input-alasan" class="form-control-label">Alasan Konsultasi</label>
+              {{ form.alasan }}
+            </div>
+            <div class="mb-3">
+              <label for="input-tanggal" class="form-control-label">Tanggal Konsultasi</label>
+              {{ form.tanggal }}
+            </div>
+            <div class="text-center">
+              <button type="submit" class="btn btn-dark w-100 my-4 mb-2">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Buat Kategori Baru {% endblock title %}
+
+{% block content %}
+<div class="container">
+  <div class="row mt-4 justify-content-center">
+    <div class="col-12 mx-auto">
+      <div class="card z-index-0">
+        <div class="card-header pb-2">
+          {% include 'includes/alert.html' %}
+          <a href="{% url 'kategori:index' %}">
+            <div class="btn btn-icon btn-3 btn-danger mb-4">
+              <span class="btn-inner--icon me-2"><i class="fa fa-arrow-left"></i></span>
+              <span class="btn-inner--text">Kembali</span>
+            </div>
+          </a>
+          <h3 class="text-center">Formulir Pembuatan Kategori</h3>
+        </div>
+        <div class="card-body">
+          <form role="form" action="" method="post">
+            {% csrf_token %} 
+            <div class="mb-3">
+                <label class="form-control-label">Nama Kategori</label> {{ form.nama }}
+            </div>
+            <div class="mb-3">
+                <label class="form-control-label">Jenis Kategori</label> {{ form.jenis_kategori }}
+            </div>
+            <div class="text-center">
+              <button type="submit" class="btn btn-dark w-100 my-4 mb-2">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

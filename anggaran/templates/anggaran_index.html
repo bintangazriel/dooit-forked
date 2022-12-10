@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %} Daftar Anggaran{% endblock title %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row mt-4 justify-content-center">
+    <div class="col-12 mx-auto">
+      <div class="card z-index-0">
+        <div class="card-header pb-2">
+            {% include 'includes/alert.html' %}
+            <a href="{% url 'anggaran:buat_anggaran' %}">
+                <div class="d-flex flex-row-reverse">
+                    <div class="btn btn-icon btn-3 btn-dark mb-4">
+                        <span class="btn-inner--text">Buat Anggaran</span>
+                        <span class="btn-inner--icon me-2"><i class="fas fa-plus ms-2"></i></span>
+                      </div>
+                </div>
+              </a>
+          <h3 class="text-center">Daftar Anggaran</h3>
+        </div>
+        <div class="card-body">
+            <div class="row">
+        {% if anggarans %}
+            {% for anggaran in anggarans %}
+                <div class="col-md-4 mb-3">
+                    <div class="card bg-tertiary p-3 mb-2">
+                        <div class="d-flex justify-content-between">
+                            <div class="d-flex flex-row align-items-center">
+                                <div class="ms-2 c-details">
+                                    <h4 class="mb-0">{{anggaran.kategori}}</h4> 
+                                    <span>{{anggaran.tanggal_mulai}} - {{anggaran.tanggal_selesai}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="horizontal bg-primary pt-1">
+                        <div class="mt-1">
+                            <div class="row">
+                                <div class="col">
+                                    Anggaran
+                                </div>
+                                <div class="col">
+                                    Sisa
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <h3 class="text-lg">Rp {{anggaran.nominal|intcomma}}</h3>
+                                </div>
+                                <div class="col">
+                                    <h3 class="text-lg">Rp {{anggaran.get_sisa|intcomma}}</h3>
+                                </div>
+                            </div>
+                            <div class="mt-1">
+                                <div class="progress" style="height:12px">
+                                    <div class="progress-bar" role="progressbar" style="width: {{anggaran.get_persentase}}%">{{anggaran.get_persentase}}%</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            {% else %}
+            <div class="text-center pb-4">
+              <i class="fa fa-sad-tear text-dark text-9xl opacity-10 m-3"></i>
+              <h6 class="font-weight-bold mb-0">Tidak ada daftar anggaran</h6>
+              <p class="text-sm">
+                Anda dapat menambah anggaran dengan menekan tombol 'Buat Anggaran'
+              </p>
+            </div>
+        {% endif %}
+            </div>
+        </div>
+{% endblock content %}

@@ -1,0 +1,19 @@
+{% if messages %}
+  {% for msg in messages %}
+  {% if msg.tags == 'success' %}
+  <div class="alert alert-info" role="alert">
+    <div class="text-white">
+      <strong>Sukses!</strong>
+      {{ msg }}
+    </div>
+  </div>
+  {% else %}
+  <div class="alert alert-warning" role="alert">
+    <div class="text-white">
+      <strong>Gagal!</strong>
+      {{ msg }}
+    </div>
+  </div>
+  {% endif %}
+  {% endfor %}
+{% endif %}

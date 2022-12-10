@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Buat Catatan Transaksi {% endblock title %}
+
+{% block content %}
+<div class="container">
+  <div class="row mt-4 justify-content-center">
+    <div class="col-12 mx-auto">
+      <div class="card z-index-0">
+        <div class="card-header pb-2">
+          {% include 'includes/alert.html' %}
+          <a href="{% url 'catatan-transaksi:index' %}">
+            <div class="btn btn-sm btn-icon btn-3 btn-danger mb-4">
+              <span class="btn-inner--icon me-2"><i class="fa fa-arrow-left"></i></span>
+              <span class="btn-inner--text">Kembali</span>
+            </div>
+          </a>
+          <h5 class="text-center">Formulir Pembuatan Catatan Transaksi</h5>
+        </div>
+        <div class="card-body">
+          <form role="form" method="post" id="catatanTransaksiForm"
+            data-kategoris-url="{% url 'catatan-transaksi:ajax_load_kategoris' %}">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="{{ form.deskripsi.id_for_label }}">Deskripsi Catatan Transaksi</label>
+              {{ form.deskripsi }}
+            </div>
+            <div class="mb-3">
+              <label for="{{ form.nominal.id_for_label }}">Nominal Catatan Transaksi</label>
+              {{ form.nominal }}
+            </div>
+            <div class="mb-3">
+              <label for="{{ form.tanggal.id_for_label }}">Tanggal Catatan Transaksi</label>
+              {{ form.tanggal }}
+            </div>
+            <div class="mb-3">
+              <label for="{{ form.jenis.id_for_label }}">Jenis Catatan Transaksi</label>
+              {{ form.jenis }}
+            </div>
+            <div class="mb-3">
+              <label for="{{ form.kategori.id_for_label }}">Kategori Catatan Transaksi</label>
+              {{ form.kategori }}
+            </div>
+            <div class="text-center">
+              <button type="submit" class="btn btn-dark w-100 my-4 mb-2">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="{% static 'js/kategoriDropdownOptions.js' %}"></script>
+{% endblock content %}

@@ -1,0 +1,85 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ===== Iconscout CSS ===== -->
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="{% static 'css/users.css' %}" />
+
+  <title>Daftar | Dooit</title>
+</head>
+
+<body>
+  <div class="container active">
+    {% if messages %}
+    {% for msg in messages %}
+      {% if msg.tags == 'success' %}
+      <div class="alert success-alert" role="alert">
+        <div class="text-white">{{ msg }}</div>
+      </div>
+      {% else %}
+      <div class="alert danger-alert" role="alert">
+        <div class="text-white">{{ msg }}</div>
+      </div>
+      {% endif %}
+    {% endfor %}
+    {% endif %}
+    <div class="forms">
+      <!-- Registration Form -->
+      <div class="form signup">
+        <span class="title">Daftar Sekarang</span>
+
+        <form action="" method="POST">
+          {% csrf_token %}
+          <div class="input-field">
+            {{ form.username }}
+            <i class="uil uil-user"></i>
+          </div>
+
+          <div class="input-field">
+            {{ form.company_name }}
+            <i class="uil uil-building"></i>
+          </div>
+
+          <div class="input-field">
+            {{ form.email }}
+            <i class="uil uil-envelope icon"></i>
+          </div>
+
+          <div class="input-field">
+            {{ form.password }}
+            <i class="uil uil-lock icon"></i>
+            <i class="uil uil-eye-slash showHidePw"></i>
+          </div>
+
+          <div class="input-field">
+            {{ form.confirm_password }}
+            <i class="uil uil-lock-alt icon"></i>
+            <i class="uil uil-eye-slash showHidePw"></i>
+          </div>
+
+          <div class="input-field button">
+            <input type="submit" value="Daftar" />
+          </div>
+        </form>
+
+        <div class="login-signup">
+          <span class="text">Sudah punya akun Dooit?
+            <a href="{% url 'login' %}" class="text login-link">Masuk</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="{% static 'js/users/script.js' %}"></script>
+</body>
+
+</html>
