@@ -9,7 +9,7 @@ class AnggaranForm(forms.ModelForm):
         data = self.cleaned_data['tanggal_mulai']
 
         if data < datetime.date.today():
-            raise ValidationError("Tanggal yang dimasukkan tidak boleh lampau")
+            raise ValidationError("Tanggal yang dimasukkan tidak boleh tanggal yang lampau")
 
         return data
 
@@ -17,7 +17,7 @@ class AnggaranForm(forms.ModelForm):
         data = self.cleaned_data['tanggal_selesai']
 
         if data < datetime.date.today():
-            raise ValidationError("Tanggal yang dimasukkan tidak boleh lampau")
+            raise ValidationError("Tanggal yang dimasukkan tidak boleh tanggal yang lampau")
 
         return data
 
