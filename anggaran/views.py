@@ -35,9 +35,16 @@ def buat_anggaran(request):
         return HttpResponseRedirect(reverse('anggaran:index'))
 
     elif form.errors:
-        messages.error(request, 'Anggaran dengan kategori ini sudah pernah dibuat dan masih berjalan!')
 
-    context['form']= form
+        for error in form.errors:
+
+            if (error == 'tanggal_mulai') or (error == 'tanggal_selesai'):
+                messages.error(request, 'Tanggal yang dimasukkan tidak boleh lampau!')
+            
+            elif error == 'kategori':
+                messages.error(request, 'Anggaran dengan kategori ini sudah pernah dibuat dan masih berjalan!')
+
+    context['form'] = form
     return render(request, "buat_anggaran.html", context)
 
 def delete_expired_anggaran(request):
