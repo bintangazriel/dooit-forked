@@ -12,18 +12,18 @@ class Migration(migrations.Migration):
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
         ('kategori', '0001_initial'),
-        ('catatanTransaksi', '0001_initial'),
+        ('anggaran', '0001_initial'),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='catatantransaksi',
+            model_name='anggaran',
             name='kategori',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.RESTRICT, to='kategori.kategori'),
+            field=models.OneToOneField(null=True, on_delete=django.db.models.deletion.CASCADE, to='kategori.kategori'),
         ),
         migrations.AddField(
-            model_name='catatantransaksi',
-            name='pencatat',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL),
+            model_name='anggaran',
+            name='user',
+            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL),
         ),
     ]
