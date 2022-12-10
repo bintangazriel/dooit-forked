@@ -21,4 +21,5 @@ class Konsultasi(models.Model):
     tanggal = models.DateField(verbose_name='Tanggal Konsultasi')
     tanggal_diajukan = models.DateTimeField(auto_now_add=True)
     tanggal_diubah = models.DateTimeField(auto_now=True)
+    is_accepted = models.BooleanField(default=False)
     
