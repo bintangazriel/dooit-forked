@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required, user_passes_test
 
 from .forms import KonsultasiForm
@@ -45,7 +46,18 @@ def ajukan_konsultasi(request, konsultan_id):
             konsultasi.klien = request.user
             konsultasi.konsultan = konsultan
             konsultasi.save()
+
+            messages.success(request, 'Pengajuan konsultasi berhasil dikirimkan!')
             return redirect('/konsultasi')
+
+        elif form.errors:
+            for error in form.errors:
+                if (error == 'tanggal'):
+                    messages.error(request, 'Tanggal yang dimasukkan tidak boleh tanggal yang sudah lampau!')
+
+                else:
+                    messages.error(request, 'Pengajuan konsultasi gagal dikirim, mohon cek kembali isi form')
+
     response = {
         'form': form,
         'konsultan': konsultan
