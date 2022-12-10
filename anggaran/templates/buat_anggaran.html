@@ -9,18 +9,7 @@
     <div class="col-12 mx-auto">
       <div class="card z-index-0">
         <div class="card-header pb-2">
-
-          {% if messages %}
-                {% for msg in messages %}
-                      <div class="alert alert-danger" role="alert">
-                        <div class="text-white">
-                          <strong>Gagal!</strong> 
-                          {{ msg }}
-                        </div>
-                    </div>
-                {% endfor %}
-            {% endif %}
-
+          {% include 'includes/alert.html' %}
           <a href="{% url 'anggaran:index' %}">
             <div class="btn btn-icon btn-3 btn-danger mb-4">
               <span class="btn-inner--icon me-2"><i class="fa fa-arrow-left"></i></span>

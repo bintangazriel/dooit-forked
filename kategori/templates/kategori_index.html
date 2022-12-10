@@ -9,18 +9,7 @@
           <div class="col-12 mx-auto">
             <div class="card z-index-0">
               <div class="card-header pb-2">
-
-                    {% if messages %}
-                        {% for msg in messages %}
-                            <div class="alert alert-info" role="alert">
-                                <div class="text-white">
-                                    <strong>Sukses!</strong> 
-                                    {{ msg }}
-                                </div>
-                            </div>
-                        {% endfor %}
-                    {% endif %}
-                    
+                    {% include 'includes/alert.html' %}
                     <div class="d-flex flex-row-reverse">
                     <a href="{% url 'kategori:buat_kategori' %}">
                     <div class="btn btn-icon btn-3 btn-dark mb-4">

@@ -7,16 +7,7 @@
 {% block content %}
 <div class="card">
   <div class="card-header pb-1">
-    {% if messages %}
-    {% for msg in messages %}
-    <div class="alert alert-info" role="alert">
-      <div class="text-white">
-        <strong>Sukses!</strong>
-        {{ msg }}
-      </div>
-    </div>
-    {% endfor %}
-    {% endif %}
+    {% include 'includes/alert.html' %}
     <div class="d-flex justify-content-between align-items-center">
       <h3>Daftar Catatan Transaksi</h3>
       <div class="flex-fill pe-4">
