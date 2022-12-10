@@ -1,29 +1,65 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detail Catatan Transaksi</title>
-</head>
-<body>
-    <table>
-        {% if catatanTransaksi %}
-        <tr>
-            <th>Deskripsi</th>
-            <th>Nominal</th>
-            <th>Tanggal</th>
-            <th>Jenis</th>
-            <th>Kategori</th>
-        </tr>
-            <tr>
-                <td>{{ catatanTransaksi.deskripsi }}</td>
-                <td>{{ catatanTransaksi.nominal }}</td>
-                <td>{{ catatanTransaksi.tanggal }}</td>
-                <td>{{ catatanTransaksi.jenis }}</td>
-                <td>{{ catatanTransaksi.kategori }}</td>
-            </tr>
-        {% endif %}
-     </table>
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Buat Catatan Transaksi {% endblock title %}
+
+{% block content %}
+<div class="container">
+    <div class="row mt-4 justify-content-center">
+        <div class="col-12 mx-auto">
+            <div class="card z-index-0">
+                <div class="card-header pb-2">
+                    <a href="{% url 'catatan-transaksi:index' %}">
+                        <div class="btn btn-sm btn-icon btn-3 btn-danger mb-4">
+                            <span class="btn-inner--icon me-2"><i class="fa fa-arrow-left"></i></span>
+                            <span class="btn-inner--text">Kembali</span>
+                        </div>
+                    </a>
+                    <h5 class="text-center">Detail Catatan Transaksi</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            Tanggal
+                        </div>
+                        <div class="col">
+                            Kategori
+                        </div>
+                        <div class="col">
+                            Jenis
+                        </div>
+                        <div class="col">
+                            Nominal
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col">
+                            <h3 class="text-lg">{{catatanTransaksi.tanggal}}</h3>
+                        </div>
+                        <div class="col">
+                            <h3 class="text-lg">{{catatanTransaksi.kategori}}</h3>
+                        </div>
+                        <div class="col">
+                            <h3 class="text-lg">{{catatanTransaksi.jenis}}</h3>
+                        </div>
+                        <div class="col">
+                            <h3 class="text-lg">Rp {{catatanTransaksi.nominal}}</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            Deskripsi
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <h3 class="text-lg font-weight-light">{{catatanTransaksi.deskripsi}}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock content %}

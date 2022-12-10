@@ -1,5 +1,5 @@
 from django import forms
-
+from django.core import validators
 from kategori.models import Kategori
 from .models import CatatanTransaksi
 
@@ -8,18 +8,42 @@ class CatatanTransaksiForm(forms.ModelForm):
         model = CatatanTransaksi
         fields = ['deskripsi', 'nominal', 'tanggal', "jenis", 'kategori']
 
-        widgets = {
-                    'tanggal': forms.DateInput(
-                        format=('%Y-%m-%d'),
-                        attrs={'class': 'form-control', 
-                            'placeholder': 'Select a date',
-                            'type': 'date'
-                            })
+        widgets = {   
+            'deskripsi': forms.TextInput(
+                attrs={'class': 'form-control', 
+                    'placeholder': 'Masukkan deskripsi catatan transaksi',
+                    'required':'true'
+                    }),
+
+            'nominal': forms.NumberInput(
+                attrs={'class': 'form-control', 
+                    'placeholder': 'Masukkan nominal catatan transaksi',
+                    'required':'true',
+                    'min': 0,
+                    'type': 'number'
+                    }),
+
+            'tanggal': forms.DateInput(
+                attrs={'class': 'form-control', 
+                    'placeholder': 'Masukkan tanggal catatan transaksi',
+                    'required':'true',
+                    'type': 'date'
+                    }),
+            
+            'jenis': forms.Select(
+                        attrs={'class': 'form-select', 
+                        'required':'true'
+                        }),
+
+            'kategori': forms.Select(
+                        attrs={'class': 'form-select', 
+                        'required':'true'
+                        })
         }
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
-            # self.fields['kategori'].queryset = Kategori.objects.none()
+            self.fields['kategori'].queryset = Kategori.objects.none()
 
             if 'kategori' in self.data:
                 try:
