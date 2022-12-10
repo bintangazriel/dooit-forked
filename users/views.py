@@ -25,7 +25,7 @@ def check_role_konsultan(user):
 
 def register(request):
   if request.user.is_authenticated:
-    messages.warning(request, 'You are already logged in!')
+    messages.warning(request, 'Anda sudah berada di dalam sistem!')
     return redirect('/')
   elif request.method == 'POST':
     form = UserForm(request.POST)
@@ -38,10 +38,10 @@ def register(request):
       user = CustomUser.objects.create_user(company_name=company_name, username=username, email=email, password=password)
       user.role = CustomUser.PENCATAT
       user.save()
-      messages.success(request, 'Your account has been registered sucessfully!')
+      messages.success(request, 'Akun Anda telah berhasil didaftarkan!')
       return redirect('login')
     else:
-      messages.error(request, 'Invalid form. Try again!')
+      messages.error(request, 'Form tidak valid. Silakan coba lagi!')
       return redirect('register')
   else:
     form = UserForm()
@@ -55,7 +55,7 @@ def register(request):
 
 def login(request):
   if request.user.is_authenticated:
-    messages.warning(request, 'You are already logged in!')
+    messages.warning(request, 'Anda sudah berada di dalam sistem!')
     return redirect('/')
   elif request.method == 'POST':
     email = request.POST['email']
@@ -65,10 +65,10 @@ def login(request):
 
     if user is not None:
       auth.login(request, user)
-      messages.success(request, 'You are now logged in.')
+      messages.success(request, 'Anda berhasil masuk ke dalam sistem!')
       return redirect('/')
     else:
-      messages.error(request, 'Invalid login credentials')
+      messages.error(request, 'Informasi login yang Anda masukkan salah!')
       return redirect('login')
 
   return render(request, 'login.html')
@@ -76,5 +76,5 @@ def login(request):
 
 def logout(request):
   auth.logout(request)
-  messages.info(request, 'You are logged out.')
-  return redirect('/')
+  messages.info(request, 'Anda telah berhasil keluar')
+  return redirect('login')
