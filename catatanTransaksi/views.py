@@ -85,7 +85,21 @@ def get_total_by_waktu(tanggal,jenis):
 @login_required(login_url='login')
 @user_passes_test(check_role_pencatat)
 def view_laporan_keuangan(request):
-    return render(request,'visualisasi_laporan_keuangan.html')
+  
+    total_pemasukan = 0
+    transaksi_pemasukan = CatatanTransaksi.objects.filter(jenis=1)
+    total_pengeluaran = 0
+    transaksi_pengeluaran = CatatanTransaksi.objects.filter(jenis=2)
+    for item in transaksi_pemasukan:
+        total_pemasukan += item.nominal
+
+    for item in transaksi_pengeluaran:
+        total_pengeluaran += item.nominal
+    response = {
+        'total_pemasukan':total_pemasukan,
+        'total_pengeluaran':total_pengeluaran
+    }
+    return render(request,'visualisasi_laporan_keuangan.html',response)
 
 def get_vis_pemasukan_pengeluaran_by_waktu(request):
     finalrep_pengeluaran = {}
@@ -103,18 +117,3 @@ def get_vis_pengeluaran_by_kategori(request):
     for x in lst_kategori_pengeluaran:
         finalrep_pengeluaran[x.get_nama()] = get_total_by_kategori(x,2)
     return JsonResponse({'expense_category_data': finalrep_pengeluaran}, safe=False)
-
-def get_total_pemasukan(request):
-    total = 0
-    transaksi_pemasukan = CatatanTransaksi.objects.filter(jenis=1)
-    for item in transaksi_pemasukan:
-        total += item.nominal
-    print(total)
-    return render(request, 'visualisasi_laporan_keuangan.html', {'total_pemasukan': total})
-
-def get_total_pengeluaran(request):
-    total = 0
-    transaksi_pengeluaran = CatatanTransaksi.objects.filter(jenis=2)
-    for item in transaksi_pengeluaran:
-        total += item.nominal
-    return render(request, 'visualisasi_laporan_keuangan.html', {'total_pengeluaran': total})
