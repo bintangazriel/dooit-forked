@@ -22,7 +22,7 @@
             {% csrf_token %}
             <div class="mb-3">
               <label for="input-konsultan" class="form-control-label">Nama Konsultan</label>
-              <input type="text" value="{{ konsultan.first_name }} {{ konsultan.last_name }}" class="form-control" disabled />
+              <input type="text" value="{{ konsultan }}" class="form-control" disabled />
             </div>
             <div class="mb-3">
               <label for="input-alasan" class="form-control-label">Alasan Konsultasi</label>

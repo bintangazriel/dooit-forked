@@ -18,22 +18,29 @@
   <div class="card-body p-2"></div>
 </div>
 <div class="row mt-5 mx-6 mx-sm-4">
-
+  {% for konsultan in list_konsultan %}
   <div class="col-xl-4 col-sm-6 col-12 mb-4">
-    <div class="card">
-      <div class="card-header bg-tertiary pb-0"></div>
-      <div class="card-body bg-tertiary">
-        <div class="d-flex">
-          <div class="py-2">
-
-          </div>
-          <div class="flex-fill">
-
+    <a href="{% url 'konsultasi:ajukan_konsultasi' konsultan.id %}">
+      <div class="card">
+        <div class="card-body bg-tertiary">
+          <div class="d-flex justify-content-around align-items-center">
+            <div class="col-md-3 col-4">
+              <div class="avatar avatar-lg bg-primary shadow-primary text-center rounded-circle" width="200">
+                <img src="{% static 'images/default.png' %}"
+                  class="avatar bg-info">
+                </img>
+              </div>
+            </div>
+            <div class="col-md-8 col-sm-7 col-8">
+              <h3 class="text-lg mb-0">{{ konsultan }}</h3>
+              <div class="text-xs mb-2 text-danger">@{{ konsultan.user.username }}</div>
+              <div class="text-sm text-uppercase">{{ konsultan.user.company_name }}</div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+      </div> 
+    </a>
   </div>
-
+  {% endfor %}
 </div>
 {% endblock content %}
